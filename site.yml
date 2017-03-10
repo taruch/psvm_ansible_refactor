@@ -1,0 +1,3 @@
+---
+
+- include: configure_nxos_5548.yml

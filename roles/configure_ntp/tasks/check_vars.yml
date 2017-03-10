@@ -1,0 +1,18 @@
+
+tasks/check_vars.yml
+
+I use this file to ensure that required variables are defined.
+
+#
+# Checking that required variables are set
+#
+- name: Checking that required variables are set
+  fail: msg="{{ item }} is not defined"
+  when: not {{ item }}
+  with_items:
+    - foobar_database
+    - foobar_deploy_user
+Then, include this file in tasks/main.yml:
+
+- include: check_vars.yml tags=foobar,foobar:check,check
+- include: foobar.yml tags=foobar

@@ -1,0 +1,16 @@
+---
+
+- name: Get Port and Vlan data for the node
+  command: ./scripts/get_portsAndVlans.py
+  run_once: true
+  register: ports_and_vlans_list
+
+- name: Modify string to
+  set_fact:
+    ports_list: "{{ ports_and_vlans_list.stdout | from_json }}"
+
+#- name: indexed loop demo
+#  debug:
+#    msg: "at array position {{ item.port }}"
+#    verbosity: 2
+#  with_items: "{{ ports_list }}"

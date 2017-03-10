@@ -1,0 +1,18 @@
+---
+
+- name: Ensure port is configured to be access port
+  nxos_interface:
+    provider: "{{ nxos_provider }}"
+    interface: "{{ item.port }}"
+    description: "a port"
+    mode: layer2
+  with_items: "{{ ports_list }}"
+
+- name: Ensure interfaces are configured for correct vlans
+  nxos_switchport:
+    provider: "{{ nxos_provider }}"
+    interface: "{{ item.port }}"
+    trunk_allowed_vlans: "{{ item.portvlans }}"
+    mode: trunk
+    transport: cli
+  with_items: "{{ ports_list }}"

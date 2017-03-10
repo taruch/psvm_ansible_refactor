@@ -1,0 +1,15 @@
+---
+
+# This directory contains defaults for variables used in roles.
+# I encourage you to define every variable used in your role, for several reasons:
+
+# this file will be a nice and always up to date reference list of settings
+# configuration in your roles having configured variables will prevent your
+# role failing in an uncontrolled way (more on this later).
+# If some of these variables are used in templates to generate config files,
+# I highly encourage you to use your target OS defaults. The principle of least
+# surprise should apply here.
+
+# Best practices assumes that you are using pseudo-namespacing for your
+# role’s variables (e.g. for role foobar, all variables should begin with foobar_)
+# to avoid collisions with other roles.

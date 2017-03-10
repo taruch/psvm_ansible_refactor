@@ -1,0 +1,53 @@
+---
+
+vlan_data:
+  - { id: 3, name: native }
+  - { id: 4, name: vlan4 }
+  - { id: 20, name: vlan20 }
+  - { id: 21, name: vlan21 }
+  - { id: 22, name: vlan22 }
+  - { id: 23, name: vlan23 }
+  - { id: 24, name: vlan24 }
+  - { id: 30, name: vlan30 }
+  - { id: 31, name: vlan31 }
+  - { id: 32, name: vlan32 }
+  - { id: 33, name: vlan33 }
+  - { id: 34, name: vlan34 }
+  - { id: 40, name: vlan40 }
+  - { id: 90, name: vlan90 }
+  - { id: 130, name: vlan130 }
+  - { id: 131, name: vlan131 }
+  - { id: 132, name: vlan132 }
+  - { id: 133, name: vlan133 }
+  - { id: 134, name: vlan134 }
+  - { id: 135, name: vlan135 }
+  - { id: 136, name: vlan136 }
+  - { id: 137, name: vlan137 }
+  - { id: 138, name: vlan138 }
+  - { id: 139, name: vlan139 }
+  - { id: 140, name: vlan140 }
+  - { id: 141, name: vlan141 }
+  - { id: 142, name: vlan142 }
+  - { id: 143, name: vlan143 }
+  - { id: 144, name: vlan144 }
+  - { id: 145, name: vlan145 }
+  - { id: 146, name: vlan146 }
+  - { id: 147, name: vlan147 }
+  - { id: 148, name: vlan148 }
+  - { id: 149, name: vlan149 }
+  - { id: 150, name: vlan150 }
+  - { id: 151, name: vlan151 }
+  - { id: 152, name: vlan152 }
+  - { id: 153, name: vlan153 }
+  - { id: 154, name: vlan154 }
+  - { id: 155, name: vlan155 }
+  - { id: 156, name: vlan156 }
+  - { id: 157, name: vlan157 }
+  - { id: 158, name: vlan158 }
+  - { id: 159, name: vlan159 }
+  - { id: 160, name: vlan160 }
+  - { id: 602, name: foo-provider602 }
+  - { id: 603, name: foo-provider603 }
+  - { id: 604, name: foo-vrf}
+  - { id: 1002, name: foo-admin}
+  - { id: 1003, name: foo-service}

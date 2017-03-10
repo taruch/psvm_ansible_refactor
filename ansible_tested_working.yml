@@ -1,0 +1,35 @@
+---
+
+- name: facts testing
+  hosts: nexus-5548s
+  connection: remote
+  gather_facts: no
+
+  vars:
+    nxos_provider:
+      host: "{{ inventory_hostname }}"
+      username: admin
+      password: C1sco123!
+      transport: nxapi
+    vlan_data:
+      - { id: 3, name: native }
+      - { id: 20, name: vlan20 }
+      - { id: 21, name: vlan21 }
+      - { id: 22, name: vlan22 }
+      - { id: 23, name: vlan23 }
+      - { id: 24, name: vlan24 }
+      - { id: 602, name: foo-provider602 }
+      - { id: 603, name: foo-provider603 }
+      - { id: 604, name: foo-vrf}
+      - { id: 1002, name: foo-admin}
+      - { id: 1003, name: foo-service}
+
+  tasks:
+
+  - name: Create new vlan list
+    set_fact: updated_vlan="{{ item.id }}"
+    with_items: "{{ vlan_data }}"
+    register: uvl_result
+
+  - name: Make an updated_vlan_list
+    set_fact: updated_vlan_list="{{ uvl_result.results | map(attribute='ansible_facts.updated_vlan') | list }}"

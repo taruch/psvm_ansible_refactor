@@ -1,0 +1,5 @@
+[all:vars]
+ansible_connection = local
+
+[core_switches]
+n5548-a     ansible_python_interpreter=./ansible/bin/python

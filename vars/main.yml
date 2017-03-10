@@ -1,0 +1,12 @@
+---
+
+ANSIBLE_VAULT_PASSWORD_FILE='~/PycharmProjects/ansible/psvm_ansible_refactor/vault_pass.txt'
+
+
+nxos_provider:
+  host: "{{ inventory_hostname }}"
+  username: admin
+  password: C1sco123!
+  transport: nxapi
+
+
