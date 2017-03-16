@@ -1,0 +1,8 @@
+---
+
+- name: Just the facts ma'am
+  nxos_facts:
+    provider: "{{ nxos_provider }}"
+    transport: cli
+    gather_subset:
+      - "!hardware"

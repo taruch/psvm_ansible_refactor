@@ -1,5 +1,11 @@
 ---
 
+nxos_provider:
+  host: "{{ inventory_hostname }}"
+  username: admin
+  password: C1sco123!
+  transport: nxapi
+
 vlan_data:
   - { id: 3, name: native }
   - { id: 4, name: vlan4 }
@@ -15,6 +21,11 @@ vlan_data:
   - { id: 34, name: vlan34 }
   - { id: 40, name: vlan40 }
   - { id: 90, name: vlan90 }
+  - { id: 125, name: vlan125 }
+  - { id: 126, name: vlan126 }
+  - { id: 127, name: vlan127 }
+  - { id: 128, name: vlan128 }
+  - { id: 129, name: vlan129 }
   - { id: 130, name: vlan130 }
   - { id: 131, name: vlan131 }
   - { id: 132, name: vlan132 }

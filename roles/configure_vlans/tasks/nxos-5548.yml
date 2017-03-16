@@ -1,10 +1,5 @@
 ---
 
-# Ensure that the vlans that are supposed to be on the node are on the node
-- name: GATHER FACTS FROM NODE NODE
-  nxos_facts:
-    provider: "{{ nxos_provider }}"
-
 - name: PRINT VLAN LIST ON NODE
   debug: var=vlan_list
 
@@ -30,12 +25,12 @@
   with_items: "{{ vlan_data | default([]) }}"
   when: item.id not in vlan_list
 
-- name: Ensure vlans that are not in the list are removed
-  nxos_vlan:
-    provider: "{{ nxos_provider }}"
-    transport: "cli"
-    vlan_id: "{{ item.id }}"
-    name: "{{ item.name }}"
-    state: absent
-  with_items: "{{ vlan_list | default([]) }}"
-  when: item.id not in vlan_data
+#- name: Ensure vlans that are not in the list are removed
+#  nxos_vlan:
+#    provider: "{{ nxos_provider }}"
+#    transport: "cli"
+#    vlan_id: "{{ item.id }}"
+#    name: "{{ item.name }}"
+#    state: absent
+#  with_items: "{{ vlan_list | default([]) }}"
+#  when: item.id not in vlan_data

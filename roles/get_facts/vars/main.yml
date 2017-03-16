@@ -1,0 +1,9 @@
+---
+
+nxos_provider:
+  host: "{{ inventory_hostname }}"
+  username: admin
+  password: C1sco123!
+  transport: nxapi
+  timeout: 60
+  use_ssl: no
