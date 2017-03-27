@@ -3,6 +3,12 @@
 - name: Just the facts ma'am
   nxos_facts:
     provider: "{{ nxos_provider }}"
-    transport: cli
+    transport: nxapi
+    timeout: 220
     gather_subset:
-      - "!hardware"
+      #- "!hardware"
+      - config
+  register: facts
+
+- name: Print NX-OS facts
+  debug: var=facts

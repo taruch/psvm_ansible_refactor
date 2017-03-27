@@ -5,5 +5,3 @@ nxos_provider:
   username: admin
   password: C1sco123!
   transport: nxapi
-  timeout: 60
-  use_ssl: no

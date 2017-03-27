@@ -1,4 +1,5 @@
 nxos_provider:
   host: "{{ inventory_hostname }}"
+  #transport: nxapi
   username: admin
   password: C1sco123!
