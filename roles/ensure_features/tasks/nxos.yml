@@ -1,0 +1,7 @@
+---
+
+  - name: ENABLE FEATURE SCHEDULER
+    nxos_feature:
+      feature: nxapi
+      provider: "{{ nxos_provider }}"
+      state: enabled

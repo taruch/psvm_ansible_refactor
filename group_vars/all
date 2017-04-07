@@ -1,2 +1,8 @@
 ntp: time.apple.com
 dns: 8.8.8.8
+
+nxos_provider:
+  host: "{{ inventory_hostname }}"
+  username: admin
+  password: C1sco123!
+  transport: nxapi

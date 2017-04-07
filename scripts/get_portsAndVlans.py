@@ -114,11 +114,15 @@ def main():
         {'port': 'port-channel197', 'portvlans': '130-139'},
         {'port': 'port-channel198', 'portvlans': '130-139'},
         {'port': 'port-channel199', 'portvlans': '130-139'},
-        {'port': 'port-channel200', 'portvlans': '20-24,158-160'}
+        {'port': 'port-channel200', 'portvlans': '130-139'},
+        {'port': 'port-channel201', 'portvlans': '130-139'},
+        {'port': 'port-channel202', 'portvlans': '20-24,158-160'},
+        {'port': 'port-channel203', 'portvlans': '130'},
+        {'port': 'port-channel204', 'portvlans': '139'}
     ]
     print json.dumps(portsAndVlans)
 
-    return portsAndVlans
+    #return portsAndVlans
 
 
 

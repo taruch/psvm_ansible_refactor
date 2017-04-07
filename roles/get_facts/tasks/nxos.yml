@@ -1,0 +1,48 @@
+---
+
+- name: Just the facts ma'am
+  nxos_facts:
+    provider: "{{ nxos_provider }}"
+    transport: cli
+    timeout: 220
+    gather_subset:
+      #- "!hardware"
+      - config
+  register: nxos_facts
+
+- name: set fact about facts - 1
+  set_fact:
+    vlan_list: "{{ nxos_facts['ansible_facts']['vlan_list'] }}"
+
+#- name: Dump all config lines to file
+#  action: template src=config.j2 dest="{{  }}"
+
+- name: Print out old_vlan_list
+  debug: var=vlan_list
+
+- name: set fact about facts
+  set_fact:
+    src: config.j2 dest=./nxos_config
+
+- name: Initialize an empty list for our strings
+  set_fact:
+    vlans_on_node: []
+
+- name: Extract the vlans on the node from the config
+  no_log: True
+  set_fact:
+    #vlans_on_node: "{{ vlans_on_node }} + [ '{{ item.split(' ')[1] | int }}' ]"
+    vlans_on_node: "{{ vlans_on_node }} + [ '{{ item.split(' ')[1] }}' ]"
+  with_lines: cat ./nxos_config
+  when: item | match("^vlan [0-9]*$")
+
+
+- name: Print out old_vlan_list
+  debug: var=vlans_on_node
+
+#- name: Print NX-OS facts
+#  #debug: var=nxos_facts['ansible_facts']
+#  debug:
+#    msg: "{{ item }}"
+#  #with_items: {{ nxos_facts['ansible_facts']['ansible_net_config'].split('\\n') }}
+#  with_items: "{{ nxos_facts['ansible_facts']['ansible_net_config'].split('\n\n') }}"

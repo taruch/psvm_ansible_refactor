@@ -1,0 +1,888 @@
+
+
+!Command: show running-config
+!Time: Mon Apr  3 09:50:36 2017
+
+version 7.3(1)N1(1)
+hostname NEXUS5548
+
+feature telnet
+cfs eth distribute
+feature lacp
+feature vpc
+feature lldp
+feature fex
+feature nxapi
+
+username admin password 5 $1$Dqd34HPR$hMqyEW48T9M23b3em3twI0  role network-admin
+username taruch password 5 $1$Dqd34HPR$hMqyEW48T9M23b3em3twI0  role network-admin
+username taruch passphrase  lifetime 99999 warntime 14 gracetime 3
+no password strength-check
+ip domain-lookup
+snmp-server user admin network-admin auth md5 0x1c618f998dc09d92b4a7cf8755c063a7 priv 0x1c618f998dc09d92b4a7cf8755c063a7 localizedkey
+rmon event 1 log description FATAL(1) owner PMON@FATAL
+rmon event 2 log description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log description ERROR(3) owner PMON@ERROR
+rmon event 4 log description WARNING(4) owner PMON@WARNING
+rmon event 5 log description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+vlan 3
+  name native
+vlan 4
+  name vlan4
+vlan 20
+  name vlan20
+vlan 21
+  name vlan21
+vlan 22
+  name vlan22
+vlan 23
+  name vlan23
+vlan 24
+  name vlan24
+vlan 30
+  name vlan30
+vlan 31
+  name vlan31
+vlan 32
+  name vlan32
+vlan 33
+  name vlan33
+vlan 34
+  name vlan34
+vlan 40
+  name vlan40
+vlan 90
+  name vlan90
+vlan 99
+vlan 125
+  name vlan125
+vlan 126
+  name vlan126
+vlan 127
+  name vlan127
+vlan 128
+  name vlan128
+vlan 129
+  name vlan129
+vlan 130
+  name vlan130
+vlan 131
+  name vlan131
+vlan 132
+  name vlan132
+vlan 133
+  name vlan133
+vlan 134
+  name vlan134
+vlan 135
+  name vlan135
+vlan 136
+  name vlan136
+vlan 137
+  name vlan137
+vlan 138
+  name vlan138
+vlan 139
+  name vlan139
+vlan 140
+  name vlan140
+vlan 141
+  name vlan141
+vlan 142
+  name vlan142
+vlan 143
+  name vlan143
+vlan 144
+  name vlan144
+vlan 145
+  name vlan145
+vlan 146
+  name vlan146
+vlan 147
+  name vlan147
+vlan 148
+  name vlan148
+vlan 149
+  name vlan149
+vlan 150
+  name vlan150
+vlan 151
+  name vlan151
+vlan 152
+  name vlan152
+vlan 153
+  name vlan153
+vlan 154
+  name vlan154
+vlan 155
+  name vlan155
+vlan 156
+  name vlan156
+vlan 157
+  name vlan157
+vlan 158
+  name vlan158
+vlan 159
+  name vlan159
+vlan 160
+  name vlan160
+vlan 600
+  name foo-external
+vlan 601
+  name foo-provider601
+vlan 602
+  name foo-provider602
+vlan 603
+  name foo-provider603
+vlan 604
+  name foo-vrf
+vlan 1002
+  name foo-admin
+vlan 1003
+  name foo-service
+vrf context management
+  ip route 0.0.0.0/0 172.16.255.1
+
+interface port-channel100
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel101
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel102
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel103
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel104
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel105
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel106
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel107
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel108
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel109
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel110
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel111
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel112
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel113
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel114
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel115
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel116
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel117
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel118
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel119
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel120
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel121
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel122
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel123
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel124
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel125
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel126
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel129
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel130
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel131
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel132
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel133
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel134
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel135
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel136
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel137
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel138
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel139
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel140
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel141
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel142
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel143
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel144
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel145
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel146
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel147
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel148
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel149
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel150
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel151
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel152
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel153
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel154
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel155
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel156
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel157
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel158
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel159
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel160
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel161
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel162
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel163
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel164
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel165
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel166
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel167
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel168
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel169
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel170
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel171
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel172
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel173
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel174
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel175
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel176
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel177
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel178
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel179
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel180
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel181
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel182
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel183
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel184
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel185
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel186
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel187
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel188
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel189
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel190
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel191
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel192
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel193
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel194
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel195
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel196
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel197
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel198
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel199
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel200
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130-139
+
+interface port-channel201
+  description a port
+  switchport mode trunk
+  switchport access vlan 139
+  switchport trunk allowed vlan 130-139
+
+interface port-channel202
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 20-24,158-160
+
+interface port-channel203
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 130
+
+interface port-channel204
+  description a port
+  switchport mode trunk
+  switchport trunk allowed vlan 139
+
+interface port-channel205
+  description a port
+  switchport mode trunk
+
+interface port-channel206
+  description a port
+  switchport mode trunk
+
+interface port-channel207
+  description a port
+  switchport mode trunk
+
+interface port-channel208
+  switchport mode trunk
+
+interface port-channel209
+  switchport mode trunk
+
+interface port-channel210
+  switchport mode trunk
+
+interface port-channel211
+  switchport mode trunk
+
+interface port-channel212
+  switchport mode trunk
+
+interface port-channel213
+  switchport mode trunk
+
+interface port-channel214
+  switchport mode trunk
+
+interface port-channel215
+  switchport mode trunk
+
+interface port-channel216
+  switchport mode trunk
+
+interface port-channel217
+  switchport mode trunk
+
+interface port-channel218
+  switchport mode trunk
+
+interface port-channel219
+  switchport mode trunk
+
+interface port-channel220
+  switchport mode trunk
+
+interface port-channel221
+  switchport mode trunk
+
+interface port-channel222
+  switchport mode trunk
+
+interface port-channel223
+  switchport mode trunk
+
+interface port-channel224
+  switchport mode trunk
+
+interface port-channel225
+  switchport mode trunk
+
+interface port-channel226
+  switchport mode trunk
+
+interface port-channel227
+  switchport mode trunk
+
+interface port-channel228
+  switchport mode trunk
+
+interface port-channel229
+  switchport mode trunk
+
+interface port-channel230
+  switchport mode trunk
+
+interface port-channel231
+  switchport mode trunk
+
+interface port-channel232
+  switchport mode trunk
+
+interface port-channel233
+  switchport mode trunk
+
+interface port-channel234
+  switchport mode trunk
+
+interface port-channel235
+  switchport mode trunk
+
+interface port-channel236
+  switchport mode trunk
+
+interface port-channel237
+  switchport mode trunk
+
+interface port-channel238
+  switchport mode trunk
+
+interface port-channel239
+  switchport mode trunk
+
+interface port-channel240
+  switchport mode trunk
+
+interface port-channel241
+  switchport mode trunk
+
+interface port-channel242
+  switchport mode trunk
+
+interface port-channel243
+  switchport mode trunk
+
+interface port-channel244
+  switchport mode trunk
+
+interface port-channel245
+  switchport mode trunk
+
+interface port-channel246
+  switchport mode trunk
+
+interface port-channel247
+  switchport mode trunk
+
+interface port-channel248
+  switchport mode trunk
+
+interface port-channel249
+  switchport mode trunk
+
+interface Ethernet1/1
+  switchport mode trunk
+  switchport trunk native vlan 3
+
+interface Ethernet1/2
+  switchport mode trunk
+  switchport trunk native vlan 10
+
+interface Ethernet1/3
+  switchport access vlan 10
+
+interface Ethernet1/4
+  switchport access vlan 10
+
+interface Ethernet1/5
+  switchport access vlan 10
+
+interface Ethernet1/6
+  switchport access vlan 10
+
+interface Ethernet1/7
+  switchport access vlan 10
+
+interface Ethernet1/8
+  switchport access vlan 10
+
+interface Ethernet1/9
+  switchport access vlan 10
+
+interface Ethernet1/10
+  switchport access vlan 10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface mgmt0
+  vrf member management
+  ip address 172.16.255.5/24
+line console
+line vty
+boot kickstart bootflash:/n5000-uk9-kickstart.7.3.1.N1.1.bin
+boot system bootflash:/n5000-uk9.7.3.1.N1.1.bin
+nxapi https port 8443
+
+
+

@@ -1,0 +1,3 @@
+{% for config_line in nxos_facts['ansible_facts']['ansible_net_config'].split('\\n') %}
+{{ config_line }}
+{% endfor %}

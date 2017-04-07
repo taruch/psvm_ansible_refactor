@@ -1,4 +1,5 @@
 {% for item in ports_list -%}
 interface {{ item['port'] }}
+  switchport mode trunk
   switchport trunk allowed vlan {{ item['portvlans'] }}
 {% endfor -%}
