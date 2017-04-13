@@ -2,12 +2,17 @@
 
 - name: Just the facts ma'am
   nxos_facts:
-    provider: "{{ nxos_provider }}"
+    #provider: "{{ nxos_provider }}"
+    host: "{{ inventory_hostname }}"
+    username: admin
+    password: C1sco123!
+    #transport: nxapi
     transport: cli
     timeout: 220
     gather_subset:
-      #- "!hardware"
-      - config
+      - "!hardware"
+      #- config
+      - all
   register: nxos_facts
 
 - name: set fact about facts - 1
