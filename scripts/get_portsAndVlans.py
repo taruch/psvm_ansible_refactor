@@ -1,131 +1,131 @@
 #!/usr/bin/env python
+import sys
 import json
+from sqlalchemy.engine import create_engine
 
-"""
+
+
+def getNovaSQL():
+    """
+    Get Nova Database Login Information
+    :return: mysql_access string
+    """
+    novaConfFile = ''
+    with open('/etc/nova/nova.conf', 'r') as file:
+        for line in file:
+            if 'sql_connection=mysql' in line:
+                mysql_access = line.replace('sql_connection=', '')
+    return mysql_access
+
+
+def getHostsAndPorts():
+    """
+    :return: Dictionary with {'fqdn of the host': 'Port-channel on the Switch
+     associated with the host'}
+    """
+    try:
+        engine = create_engine(getNovaSQL(), echo=False)
+        connection = engine.connect()
+        result = connection.execute("""
+                                    SELECT DISTINCT(
+                                          compute_nodes.hypervisor_hostname),
+                                          psvm_switchport_binding.switch_port
+                                    FROM psvm_switchport_binding
+                                    RIGHT JOIN compute_nodes
+                                    ON psvm_switchport_binding.compute_node_id =
+                                    compute_nodes.id ORDER BY switch_port
+                                    """)
+        connection.close()
+    except:
+        print "getHostsAndPorts - Error trying to create a mysql engine:"
+        print "  - Check access to mysql"
+        print "  - Check password in nova.conf"
+    hostsAndPorts = {}
+    for row in result:
+        hostsAndPorts[row['hypervisor_hostname']] = row['switch_port']
+    return hostsAndPorts
+
+def getHostsAndVlans():
+    """
+    
+    :return: List of tuples that contain ('fqdn of the host', 'vlan required
+     to be trunked to the host')
+    """
+    try:
+        engine = create_engine(getNovaSQL(), echo=False)
+        connection = engine.connect()
+        result = connection.execute("""
+                                    SELECT instances.host, networks.vlan
+                                    FROM instances
+                                    LEFT JOIN networks ON
+                                    instances.project_id = networks.project_id
+                                    WHERE instances.deleted=0
+                                    """)
+        connection.close
+    except:
+        print "getHostsAndVlans - Error trying to create a mysql engine:"
+        print "  - Check access to mysql"
+        print "  - Check password in nova.conf"
+    hostsAndVlans = []
+    for row in result:
+        hostsAndVlans.append((row['host'], int(row['vlan'])))
+    return hostsAndVlans
+
+
+def gen_HandV_dict():
+    """
+    
+    :return: 
+    """
+    h_v = {}
+    host_vlans = getHostsAndVlans()
+    for host, vlan in host_vlans:
+        if host in h_v:
+            listval = h_v[host]
+            if vlan in listval:
+                continue
+            else:
+                listval.append(vlan)
+                h_v[host] = listval
+        else:
+            h_v[host] = [vlan]
+    return h_v
+
+
+def gen_PSVM_JSON(global_vlans):
+    """
+    
+    :return: 
+    """
+    hostsAndVlans = gen_HandV_dict()
+    hostsAndPorts = getHostsAndPorts()
+    psvm = []
+    for host, vlans in hostsAndVlans.iteritems():
+        vlanstr = ','.join(str(e) for e in sorted(vlans + global_vlans))
+        hostport = hostsAndPorts[host]
+        psvm.append({'port': hostport, 'portvlans': vlanstr})
+    return psvm
+
+
 def main():
-    portsAndVlans = [
-        ('port-channel135', '20-24,40'),
-        ('port-channel140', '20-24')
-    ]
-    print json.dumps(portsAndVlans)
-
-    return portsAndVlans
-"""
-
-
-def main():
-    portsAndVlans = [
-        {'port': 'port-channel100', 'portvlans': '130-139'},
-        {'port': 'port-channel101', 'portvlans': '130-139'},
-        {'port': 'port-channel102', 'portvlans': '130-139'},
-        {'port': 'port-channel103', 'portvlans': '130-139'},
-        {'port': 'port-channel104', 'portvlans': '130-139'},
-        {'port': 'port-channel105', 'portvlans': '130-139'},
-        {'port': 'port-channel106', 'portvlans': '130-139'},
-        {'port': 'port-channel107', 'portvlans': '130-139'},
-        {'port': 'port-channel108', 'portvlans': '130-139'},
-        {'port': 'port-channel109', 'portvlans': '130-139'},
-        {'port': 'port-channel110', 'portvlans': '130-139'},
-        {'port': 'port-channel111', 'portvlans': '130-139'},
-        {'port': 'port-channel112', 'portvlans': '130-139'},
-        {'port': 'port-channel113', 'portvlans': '130-139'},
-        {'port': 'port-channel114', 'portvlans': '130-139'},
-        {'port': 'port-channel115', 'portvlans': '130-139'},
-        {'port': 'port-channel116', 'portvlans': '130-139'},
-        {'port': 'port-channel117', 'portvlans': '130-139'},
-        {'port': 'port-channel118', 'portvlans': '130-139'},
-        {'port': 'port-channel119', 'portvlans': '130-139'},
-        {'port': 'port-channel120', 'portvlans': '130-139'},
-        {'port': 'port-channel121', 'portvlans': '130-139'},
-        {'port': 'port-channel122', 'portvlans': '130-139'},
-        {'port': 'port-channel123', 'portvlans': '130-139'},
-        {'port': 'port-channel124', 'portvlans': '130-139'},
-        {'port': 'port-channel125', 'portvlans': '130-139'},
-        {'port': 'port-channel126', 'portvlans': '130-139'},
-        {'port': 'port-channel129', 'portvlans': '130-139'},
-        {'port': 'port-channel130', 'portvlans': '130-139'},
-        {'port': 'port-channel131', 'portvlans': '130-139'},
-        {'port': 'port-channel132', 'portvlans': '130-139'},
-        {'port': 'port-channel133', 'portvlans': '130-139'},
-        {'port': 'port-channel134', 'portvlans': '130-139'},
-        {'port': 'port-channel135', 'portvlans': '130-139'},
-        {'port': 'port-channel136', 'portvlans': '130-139'},
-        {'port': 'port-channel137', 'portvlans': '130-139'},
-        {'port': 'port-channel138', 'portvlans': '130-139'},
-        {'port': 'port-channel139', 'portvlans': '130-139'},
-        {'port': 'port-channel140', 'portvlans': '130-139'},
-        {'port': 'port-channel141', 'portvlans': '130-139'},
-        {'port': 'port-channel142', 'portvlans': '130-139'},
-        {'port': 'port-channel143', 'portvlans': '130-139'},
-        {'port': 'port-channel144', 'portvlans': '130-139'},
-        {'port': 'port-channel145', 'portvlans': '130-139'},
-        {'port': 'port-channel146', 'portvlans': '130-139'},
-        {'port': 'port-channel147', 'portvlans': '130-139'},
-        {'port': 'port-channel148', 'portvlans': '130-139'},
-        {'port': 'port-channel149', 'portvlans': '130-139'},
-        {'port': 'port-channel150', 'portvlans': '130-139'},
-        {'port': 'port-channel151', 'portvlans': '130-139'},
-        {'port': 'port-channel152', 'portvlans': '130-139'},
-        {'port': 'port-channel153', 'portvlans': '130-139'},
-        {'port': 'port-channel154', 'portvlans': '130-139'},
-        {'port': 'port-channel155', 'portvlans': '130-139'},
-        {'port': 'port-channel156', 'portvlans': '130-139'},
-        {'port': 'port-channel157', 'portvlans': '130-139'},
-        {'port': 'port-channel158', 'portvlans': '130-139'},
-        {'port': 'port-channel159', 'portvlans': '130-139'},
-        {'port': 'port-channel160', 'portvlans': '130-139'},
-        {'port': 'port-channel160', 'portvlans': '130-139'},
-        {'port': 'port-channel161', 'portvlans': '130-139'},
-        {'port': 'port-channel162', 'portvlans': '130-139'},
-        {'port': 'port-channel163', 'portvlans': '130-139'},
-        {'port': 'port-channel164', 'portvlans': '130-139'},
-        {'port': 'port-channel165', 'portvlans': '130-139'},
-        {'port': 'port-channel166', 'portvlans': '130-139'},
-        {'port': 'port-channel167', 'portvlans': '130-139'},
-        {'port': 'port-channel168', 'portvlans': '130-139'},
-        {'port': 'port-channel169', 'portvlans': '130-139'},
-        {'port': 'port-channel170', 'portvlans': '130-139'},
-        {'port': 'port-channel171', 'portvlans': '130-139'},
-        {'port': 'port-channel172', 'portvlans': '130-139'},
-        {'port': 'port-channel173', 'portvlans': '130-139'},
-        {'port': 'port-channel174', 'portvlans': '130-139'},
-        {'port': 'port-channel175', 'portvlans': '130-139'},
-        {'port': 'port-channel176', 'portvlans': '130-139'},
-        {'port': 'port-channel177', 'portvlans': '130-139'},
-        {'port': 'port-channel178', 'portvlans': '130-139'},
-        {'port': 'port-channel179', 'portvlans': '130-139'},
-        {'port': 'port-channel180', 'portvlans': '130-139'},
-        {'port': 'port-channel181', 'portvlans': '130-139'},
-        {'port': 'port-channel182', 'portvlans': '130-139'},
-        {'port': 'port-channel183', 'portvlans': '130-139'},
-        {'port': 'port-channel184', 'portvlans': '130-139'},
-        {'port': 'port-channel185', 'portvlans': '130-139'},
-        {'port': 'port-channel186', 'portvlans': '130-139'},
-        {'port': 'port-channel187', 'portvlans': '130-139'},
-        {'port': 'port-channel188', 'portvlans': '130-139'},
-        {'port': 'port-channel189', 'portvlans': '130-139'},
-        {'port': 'port-channel190', 'portvlans': '130-139'},
-        {'port': 'port-channel191', 'portvlans': '130-139'},
-        {'port': 'port-channel192', 'portvlans': '130-139'},
-        {'port': 'port-channel193', 'portvlans': '130-139'},
-        {'port': 'port-channel194', 'portvlans': '130-139'},
-        {'port': 'port-channel195', 'portvlans': '130-139'},
-        {'port': 'port-channel196', 'portvlans': '130-139'},
-        {'port': 'port-channel197', 'portvlans': '130-139'},
-        {'port': 'port-channel198', 'portvlans': '130-139'},
-        {'port': 'port-channel199', 'portvlans': '130-139'},
-        {'port': 'port-channel200', 'portvlans': '130-139'},
-        {'port': 'port-channel201', 'portvlans': '130-139'},
-        {'port': 'port-channel202', 'portvlans': '20-24,158-160'},
-        {'port': 'port-channel203', 'portvlans': '130'},
-        {'port': 'port-channel204', 'portvlans': '139'}
-    ]
-    print json.dumps(portsAndVlans)
-
-    #return portsAndVlans
-
-
-
+    """
+    
+    :return:
+    """
+    global_vlans = []
+    #for i in xrange(1, len(sys.argv)):
+    #    required_vlans.append(sys.argv[i])
+    if len(sys.argv) == 2:
+        for i in sys.argv[1].split(','):
+            try:
+                i = int(i)
+                global_vlans.append(i)
+            except:
+                print "Unable to parse {0}".format(i)
+                pass
+    psvm_data = gen_PSVM_JSON(global_vlans)
+    print json.dumps(psvm_data, indent=4)
+    return psvm_data
 
 
 if __name__ == '__main__':

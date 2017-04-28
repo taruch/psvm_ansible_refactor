@@ -1,6 +1,6 @@
 ---
 
-- name: Just the facts ma'am
+- name: Just the facts
   nxos_facts:
     #provider: "{{ nxos_provider }}"
     host: "{{ inventory_hostname }}"
@@ -8,22 +8,21 @@
     password: C1sco123!
     #transport: nxapi
     transport: cli
-    timeout: 220
     gather_subset:
       - "!hardware"
       #- config
       - all
   register: nxos_facts
 
-- name: set fact about facts - 1
-  set_fact:
-    vlan_list: "{{ nxos_facts['ansible_facts']['vlan_list'] }}"
+#- name: set fact about facts - 1
+#  set_fact:
+#    vlan_list: "{{ nxos_facts['ansible_facts']['vlan_list'] }}"
 
 #- name: Dump all config lines to file
 #  action: template src=config.j2 dest="{{  }}"
 
-- name: Print out old_vlan_list
-  debug: var=vlan_list
+#- name: Print out old_vlan_list
+#  debug: var=vlan_list
 
 - name: set fact about facts
   set_fact:

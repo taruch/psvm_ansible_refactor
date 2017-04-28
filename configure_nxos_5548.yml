@@ -4,6 +4,6 @@
   roles:
     #- ensure_features
     - get_facts
-    #- get_ports_and_Vlans
+    - get_ports_and_Vlans
     #- configure_vlans
     #- configure_ports
