@@ -1,7 +1,7 @@
 ---
 
 - name: Get Port and Vlan data for the node
-  command: ./scripts/get_portsAndVlans.py
+  command: "./scripts/get_portsAndVlans.py {{ global_vlans }}"
   run_once: true
   register: ports_and_vlans_list
 

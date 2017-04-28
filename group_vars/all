@@ -6,3 +6,5 @@ nxos_provider:
   username: admin
   password: C1sco123!
   transport: nxapi
+
+global_vlans: 19,250,251
